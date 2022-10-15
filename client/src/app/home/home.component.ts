@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  registerMode= false
+  registerMode= false;
   users : any;
 
   constructor() { }
