@@ -22,8 +22,16 @@
 
 
       </ng-container>
+      <li class="nav">
+        <a  routerLink="/errors" routerLinkActive="active"
+          ><button type="button" class="btn btn-link">Errors</button></a
+        >
+      </li>
+    
+
     
     </ul>
+  
 
     <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
       <a class="dropdown-toggle text-light" dropdownToggle> Welcome {{ user.username | titlecase }}  </a>
