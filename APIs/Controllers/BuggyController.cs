@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using APIs.Data;
 using APIs.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIs.Controllers
@@ -14,11 +15,12 @@ namespace APIs.Controllers
         public BuggyController( DataContext context){
             _context= context;
         }
-        
+        [Authorize]
         [HttpGet("auth")]
         public ActionResult<string> GetSecret(){
             return "secret text";    
         }
+
         [HttpGet("not-found")]
          public ActionResult<AppUser> GetNotFound(){
             var thing = _context.User.Find(-1); 
