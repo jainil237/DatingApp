@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace APIs.Extensions
-{
+  {
     public static class ApplicationServiceExtensions
     {
         public static IServiceCollection AddApplicationServices( this IServiceCollection services ,  IConfiguration config )

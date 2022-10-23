@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,7 +16,8 @@ import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-import { TestErrorComponent } from './errors/test-error/test-error.component';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { TestErrorsComponent } from './errors/test-error/test-error.component';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './shared.module';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
@@ -30,11 +32,13 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
     RegisterComponent,
     MemberListComponent,
     MemberDetailComponent,
+    MemberCardComponent,
     ListsComponent,
     MessagesComponent,
-    TestErrorComponent,
+    TestErrorsComponent,
     NotFoundComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -46,10 +50,12 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
     
     
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor , multi :true
-  }],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor , multi :true },
+    { provide: HTTP_INTERCEPTORS, useClass :JwtInterceptor, multi:true }
+  
+  ],
+      bootstrap: [AppComponent]
 })
 export class AppModule { }
 

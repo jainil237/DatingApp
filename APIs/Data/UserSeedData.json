@@ -13,7 +13,7 @@
         "Country": "Estonia",
         "Photos": [
           {
-            "url": "https://randomuser.me/api/portraits/women/77.jpg",
+            "Url": "https://randomuser.me/api/portraits/women/77.jpg",
             "isMain": true
           }
         ]
@@ -32,7 +32,7 @@
         "Country": "Gambia",
         "Photos": [
           {
-            "url": "https://randomuser.me/api/portraits/women/59.jpg",
+            "Url": "https://randomuser.me/api/portraits/women/59.jpg",
             "isMain": true
           }
         ]
@@ -51,7 +51,7 @@
         "Country": "Senegal",
         "Photos": [
           {
-            "url": "https://randomuser.me/api/portraits/women/2.jpg",
+            "Url": "https://randomuser.me/api/portraits/women/2.jpg",
             "isMain": true
           }
         ]
@@ -71,7 +71,7 @@
         "Country": "Botswana",
         "Photos": [
           {
-            "url": "https://randomuser.me/api/portraits/women/49.jpg",
+            "Url": "https://randomuser.me/api/portraits/women/49.jpg",
             "isMain": true
           }
         ]
@@ -91,7 +91,7 @@
         "Country": "Benin",
         "Photos": [
           {
-            "url": "https://randomuser.me/api/portraits/men/94.jpg",
+            "Url": "https://randomuser.me/api/portraits/men/94.jpg",
             "isMain": true
           }
         ]
@@ -110,7 +110,7 @@
         "Country": "New Caledonia",
         "Photos": [
           {
-            "url": "https://randomuser.me/api/portraits/men/48.jpg",
+            "Url": "https://randomuser.me/api/portraits/men/48.jpg",
             "isMain": true
           }
         ]
@@ -151,7 +151,7 @@
         "Country": "Iraq",
         "Photos": [
           {
-            "url": "https://randomuser.me/api/portraits/men/38.jpg",
+            "Url": "https://randomuser.me/api/portraits/men/38.jpg",
             "isMain": true
           }
         ]
