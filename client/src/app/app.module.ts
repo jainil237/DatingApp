@@ -26,6 +26,7 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     MemberDetailComponent,
     MemberCardComponent,
     MemberEditComponent,
+    PhotoEditorComponent,
     ListsComponent,
     MessagesComponent,
     TestErrorsComponent,
