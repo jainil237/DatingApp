@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using APIs.DTOs;
 using APIs.Entities;
+using APIs.Helpers;
 using APIs.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -29,12 +30,17 @@ namespace APIs.Data
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<MembersDto>> GetMembersAsync()
-        {
-            return await _context.User
-                .ProjectTo<MembersDto>(_mapper.ConfigurationProvider)
-                .ToListAsync();
-        }
+        // public async Task<IEnumerable<MembersDto>> GetMembersAsync(UserParams userParams)
+        // {
+        //     // var query=_context.User.ProjectTo<MembersDto>(_mapper.ConfigurationProvider).AsNoTracking();
+        //     // return await PagedList<MembersDto>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
+
+
+
+        //     return await _context.User
+        //         .ProjectTo<MembersDto>(_mapper.ConfigurationProvider)
+        //         .ToListAsync();
+        // }
 
         public async Task<AppUser> GetUserByIdAsync(int id)
         {
@@ -63,6 +69,27 @@ namespace APIs.Data
         public void Update(AppUser user)
         {
             _context.Entry(user).State = EntityState.Modified;
+        }
+
+        async   Task<PagedList<MembersDto>> IUserRepository.GetMembersAsync(UserParams userParams)
+        {
+            
+            var query=_context.User.AsQueryable();
+                        
+                query = query.Where(u=>u.UserName != userParams.CurrentUsername);  
+                query = query.Where( u=> u.Gender == userParams.Gender);     
+                var minDob= DateTime.Today.AddYears(-userParams.MaxAge -1);
+                var maxDob= DateTime.Today.AddYears(-userParams.MinAge);
+                query = query.Where(u=>u.DateOfBirth >= minDob && u.DateOfBirth <=maxDob);
+                query = userParams.OrderBy switch{
+                  "created"=> query.OrderByDescending(u=>u.Created),
+                  _=> query.OrderByDescending(u=>u.LastActive)  
+                    
+                };
+                
+            return await PagedList<MembersDto>.CreateAsync(query.ProjectTo<MembersDto>(_mapper
+            .ConfigurationProvider).AsNoTracking(), 
+            userParams.PageNumber, userParams.PageSize);
         }
     }
 }
