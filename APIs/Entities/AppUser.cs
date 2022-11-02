@@ -19,6 +19,8 @@ namespace APIs.Entities
         public string Country { get; set; }
         public ICollection<Photo> Photos { get; set; }
 
+        public ICollection<UserLikes> LikedByUsers { get; set; }
+        public ICollection<UserLikes> LikedUsers { get; set; }
          
 
     }

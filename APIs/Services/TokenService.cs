@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using APIs.Entities;
 using APIs.Interfaces;
 using Microsoft.IdentityModel.Tokens;
@@ -14,26 +10,25 @@ namespace APIs.Services
     public class TokenService : ITokenService
     {
         private readonly SymmetricSecurityKey _key;
-        public TokenService( IConfiguration config)
+        public TokenService(IConfiguration config)
         {
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
-
-
         }
         public string CreateToken(AppUser user)
         {
             var claims = new List<Claim>
             {
-                    new Claim(JwtRegisteredClaimNames.NameId , user.Id.ToString()),
-                     new Claim(JwtRegisteredClaimNames.UniqueName , user.UserName),
+                    new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
+                    new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
             };
 
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
 
-            var tokenDescriptor = new SecurityTokenDescriptor{
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
                 Subject = new ClaimsIdentity(claims),
-                Expires =DateTime.Now.AddDays(7),
-                SigningCredentials= creds
+                Expires = DateTime.Now.AddDays(7),
+                SigningCredentials = creds
 
             };
 
@@ -43,6 +38,6 @@ namespace APIs.Services
             return tokenHandler.WriteToken(token);
         }
 
-            
+
     }
 }
