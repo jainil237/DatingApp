@@ -5,11 +5,11 @@
 }
 .card-body{
     padding: 0 25px;
-    background-color: transparent;
+    background-color: black;
 }
 .card-footer{
     padding: 10px 15px;
-    background-color: transparent;
+    background-color: black;
    
     border-top: none;
 }
